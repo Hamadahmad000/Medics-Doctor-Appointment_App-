@@ -1,10 +1,14 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import styles from './upCommingStyle';
+import UpCommingSchedulCard from '../upcommingSchedulCard/UpCommingSchedulCard';
 
-export default function Upcomming() {
+const Upcomming = () => {
   return (
-    <View>
-      <Text>Upcomming</Text>
+    <View style={styles.container}>
+      <UpCommingSchedulCard />
     </View>
   );
-}
+};
+
+export default Upcomming;

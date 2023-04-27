@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   icon: {
     height: 35,
     width: 35,
+    tintColor: THEME_COLORS.green,
   },
   title: {
     alignSelf: 'center',
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
     color: THEME_COLORS.black,
     fontFamily: APP_FONT_FAMILIY.interSemiBold,
     marginBottom: 8,
+    textAlign: 'center',
   },
   description: {
     fontSize: APP_FONT_SIZE.h4,
@@ -41,6 +43,13 @@ const styles = StyleSheet.create({
   },
   buttonDiv: {
     width: '60%',
+    alignSelf: 'center',
+    marginBottom: 15,
+  },
+  bottomButtonText: {
+    fontSize: APP_FONT_SIZE.h4,
+    fontFamily: APP_FONT_FAMILIY.interSemiBold,
+    color: THEME_COLORS.green,
     alignSelf: 'center',
     marginBottom: 20,
   },

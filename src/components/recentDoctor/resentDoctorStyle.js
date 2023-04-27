@@ -5,11 +5,19 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
+    marginRight: 30,
+    height: 125,
   },
-  Text: {
-    color: THEME_COLORS.black,
-    fontFamily: APP_FONT_FAMILIY.interBold,
+  doctorImage: {
+    height: 70,
+    width: 70,
+    borderRadius: 50,
+  },
+  doctorName: {
+    fontSize: 13,
+    fontFamily: APP_FONT_FAMILIY.interMedium,
+    color: THEME_COLORS.textNavy,
+    marginTop: 5,
   },
 });
 

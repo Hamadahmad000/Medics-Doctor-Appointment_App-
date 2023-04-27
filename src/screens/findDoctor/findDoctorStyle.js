@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     borderRadius: 16,
   },
   optionIcons: {
-    height: 25,
-    width: 25,
+    height: 30,
+    width: 30,
   },
   optionsTitles: {
     fontSize: APP_FONT_SIZE.h5,
@@ -51,6 +51,22 @@ const styles = StyleSheet.create({
     fontFamily: APP_FONT_FAMILIY.interSemiBold,
     color: THEME_COLORS.black,
   },
+  optionsBottom: {
+    flexDirection: 'row',
+    paddingHorizontal: 24,
+    paddingTop: 12,
+    paddingBottom: 16,
+    justifyContent: 'space-between',
+  },
+  recommendedDoctor: {
+    marginHorizontal: 24,
+  },
+  recentDoctolist: {
+    justifyContent: 'space-between',
+    width: '100%',
+    marginHorizontal: 24,
+  },
+  // recentDoctorsDiv: {flex: 1},
 });
 
 export default styles;

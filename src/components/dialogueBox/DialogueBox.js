@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Modal from 'react-native-modal';
 import styles from './dialogueBoxStyle';
@@ -10,6 +10,10 @@ export default function DialogueBox({
   buttonText,
   onpress,
   isvisible,
+  icon,
+  bottomButton,
+  bottomButtonText,
+  onBottomButtonPress,
 }) {
   return (
     <Modal isVisible={isvisible} animationInTiming={1000} coverScreen={true}>
@@ -17,7 +21,7 @@ export default function DialogueBox({
         <View style={styles.box}>
           <View style={styles.iconDiv}>
             <Image
-              source={require('../../assets/icons/ok.png')}
+              source={icon ? icon : require('../../assets/icons/ok.png')}
               style={styles.icon}
               resizeMode="contain"
             />
@@ -33,6 +37,12 @@ export default function DialogueBox({
               onpress={onpress}
             />
           </View>
+          {bottomButton ? (
+            <TouchableOpacity
+              onPress={onBottomButtonPress ? onBottomButtonPress : null}>
+              <Text style={styles.bottomButtonText}>{bottomButtonText}</Text>
+            </TouchableOpacity>
+          ) : null}
         </View>
       </View>
     </Modal>

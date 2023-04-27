@@ -8,6 +8,8 @@ const THEME_COLORS = {
   TabIcon: '#ADADAD',
   chillyWhite: '#E8F3F1',
   disabled: '#DEECE9',
+  textNavy: '#3B4453',
+  synergy: '#46C4B9',
 };
 
 const APP_FONT_SIZE = {

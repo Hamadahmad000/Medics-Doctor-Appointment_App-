@@ -88,7 +88,7 @@ export default function Home() {
                 style={styles.optionIcons}
               />
             </TouchableOpacity>
-            <Text style={styles.optionsTitles}>Ambulance</Text>
+            s<Text style={styles.optionsTitles}>Ambulance</Text>
           </View>
         </View>
         <Banner />

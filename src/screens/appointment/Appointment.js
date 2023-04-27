@@ -9,16 +9,20 @@ import Button from '../../components/button/Button';
 import {THEME_COLORS} from '../../constant/Theme';
 import GetDateTIme from '../../helper/DateTimeHelper';
 import DialogueBox from '../../components/dialogueBox/DialogueBox';
+import {useDispatch, useSelector} from 'react-redux';
+import {bookDoctor} from '../../store/slices/OrderedSlice';
 export default function Appointment() {
   const [Date, setDate] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [showDialogueBox, setshowDialogueBox] = useState(false);
-
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const route = useRoute().params.DOCTOR_DETAILS;
   useEffect(() => {
     setDate(GetDateTIme());
   }, []);
+  const data = useSelector(state => state.bookDoctor);
+  console.log(data);
 
   function handleBack() {
     navigation.goBack();
@@ -45,7 +49,12 @@ export default function Appointment() {
   };
 
   function handleBooking() {
+    // console.log('working');
+    dispatch(bookDoctor(route));
     setshowDialogueBox(true);
+  }
+  function handleDoctorChat() {
+    setshowDialogueBox(false);
   }
 
   return (
@@ -145,7 +154,7 @@ export default function Appointment() {
           description={
             'Your payment has been successful, you can have a consultation session with your trusted doctor'
           }
-          // onpress={handleDoctoChat}
+          onpress={handleDoctorChat}
         />
       </ScrollView>
     </View>
