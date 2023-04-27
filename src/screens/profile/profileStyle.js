@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: THEME_COLORS.synergy,
     flex: 1,
+    // height: SCREEN_SIZE.SCREEN_HEIGHT - SCREEN_SIZE.SCREEN_HEIGHT / 11.5,
+
+    // paddingBottom: 100,
   },
   userProfileImg: {
     height: 80,
@@ -92,6 +95,7 @@ const styles = StyleSheet.create({
     width: SCREEN_SIZE.SCREEN_WIDTH,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    paddingBottom: 70,
   },
   bottomIconImage: {
     height: 20,
