@@ -15,6 +15,7 @@ export default function Button({
   onpress,
   disabled,
   textFontSize,
+  borderRadius,
 }) {
   return (
     <TouchableOpacity
@@ -26,6 +27,7 @@ export default function Button({
           marginVertical: marginVerticle ? marginVerticle : 0,
           borderWidth: border ? border : 0,
           borderColor: borderColor ? borderColor : 'black',
+          borderRadius: borderRadius ? borderRadius : 32,
         },
       ]}
       onPress={() => (onpress ? onpress() : null)}

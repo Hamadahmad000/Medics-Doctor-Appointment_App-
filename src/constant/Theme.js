@@ -10,6 +10,7 @@ const THEME_COLORS = {
   disabled: '#DEECE9',
   textNavy: '#3B4453',
   synergy: '#46C4B9',
+  buttonGray: '#E8F3F1',
 };
 
 const APP_FONT_SIZE = {

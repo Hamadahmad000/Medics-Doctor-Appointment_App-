@@ -7,7 +7,7 @@ import SCREEN_SIZE from '../../utils/utils';
 
 export default function All() {
   const chatData = useSelector(state => state.bookDoctor);
-  console.log(chatData.length == []);
+
   const handleChatList = (item, index) => {
     return (
       <Chat
@@ -27,6 +27,7 @@ export default function All() {
   };
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       contentContainerStyle={{minHeight: SCREEN_SIZE.SCREEN_HEIGHT / 1.4}}>
       <View style={styles.container}>
         {chatData.length == 0 ? (

@@ -20,6 +20,7 @@ export default function Input({
   onRIghtIconPress,
   keyBoardType,
   paddingVerticle,
+  ref,
 }) {
   return (
     <View
@@ -48,6 +49,7 @@ export default function Input({
       ) : null}
       <TextInput
         placeholder={placeHolder}
+        ref={ref ? ref : null}
         style={[
           styles.input,
           {paddingVertical: paddingVerticle ? paddingVerticle : 9},

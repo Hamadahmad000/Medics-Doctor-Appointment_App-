@@ -6,7 +6,7 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import styles from './homeStyle';
 import Input from '../../components/input/Input';
 import Banner from '../../components/banner/Banner';
@@ -29,6 +29,8 @@ export default function Home() {
       INDEX: index,
     });
   };
+
+  const inputRef = useRef();
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -36,11 +38,13 @@ export default function Home() {
           <Text style={styles.headerTitle}>
             Find your desire healt solution
           </Text>
-          <Image
-            source={require('../../assets/icons/bell-ring.png')}
-            style={styles.headerIcon}
-            resizeMode="contain"
-          />
+          <TouchableOpacity>
+            <Image
+              source={require('../../assets/icons/bell-ring.png')}
+              style={styles.headerIcon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
         </View>
         <View style={styles.searchBar}>
           <Input

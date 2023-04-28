@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 32,
   },
   buttonText: {
     fontSize: 16,
