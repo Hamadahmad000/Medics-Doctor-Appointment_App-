@@ -1,12 +1,5 @@
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  FlatList,
-} from 'react-native';
-import React, {useRef, useState} from 'react';
+import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import React, {useState} from 'react';
 import styles from './homeStyle';
 import Input from '../../components/input/Input';
 import Banner from '../../components/banner/Banner';
@@ -30,7 +23,9 @@ export default function Home() {
     });
   };
 
-  const inputRef = useRef();
+  function handlePharmacy() {
+    navigation.navigate('Pharmacy');
+  }
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -68,7 +63,9 @@ export default function Home() {
             <Text style={styles.optionsTitles}>Doctor</Text>
           </View>
           <View style={styles.optionsDivs}>
-            <TouchableOpacity style={styles.optionsButtons}>
+            <TouchableOpacity
+              style={styles.optionsButtons}
+              onPress={handlePharmacy}>
               <Image
                 source={require('../../assets/icons/plast.png')}
                 style={styles.optionIcons}

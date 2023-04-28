@@ -18,6 +18,7 @@ import TopDoctors from '../screens/topDoctors/TopDoctors';
 import FindDoctor from '../screens/findDoctor/FindDoctor';
 import DoctorDetails from '../screens/doctorDetails/DoctorDetails';
 import Appointment from '../screens/appointment/Appointment';
+import Pharmacy from '../screens/Pharmacy/Pharmacy';
 export default function Navigation() {
   const Stack = createStackNavigator();
   return (
@@ -25,6 +26,7 @@ export default function Navigation() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="BottomTab" component={BottomTab} />
         <Stack.Screen name="Appointment" component={Appointment} />
+        <Stack.Screen name="Pharmacy" component={Pharmacy} />
         <Stack.Screen name="DoctorDetail" component={DoctorDetails} />
         <Stack.Screen name="FindDoctor" component={FindDoctor} />
         <Stack.Screen name="TopDoctors" component={TopDoctors} />
