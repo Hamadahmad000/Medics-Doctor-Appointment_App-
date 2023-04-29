@@ -19,18 +19,25 @@ import FindDoctor from '../screens/findDoctor/FindDoctor';
 import DoctorDetails from '../screens/doctorDetails/DoctorDetails';
 import Appointment from '../screens/appointment/Appointment';
 import Pharmacy from '../screens/Pharmacy/Pharmacy';
+import MyCart from '../screens/myCart/MyCart';
+import DrugsDetails from '../screens/drugsDetails/DrugsDetails';
+import Chat from '../screens/chat/Chat';
+
 export default function Navigation() {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="BottomTab" component={BottomTab} />
         <Stack.Screen name="Appointment" component={Appointment} />
+        <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="MyCart" component={MyCart} />
+        <Stack.Screen name="DrugsDetails" component={DrugsDetails} />
         <Stack.Screen name="Pharmacy" component={Pharmacy} />
         <Stack.Screen name="DoctorDetail" component={DoctorDetails} />
         <Stack.Screen name="FindDoctor" component={FindDoctor} />
         <Stack.Screen name="TopDoctors" component={TopDoctors} />
-        <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="NewPassword" component={CreateNewPassword} />
         <Stack.Screen name="ResetPassword" component={ResetPassword} />
         <Stack.Screen name="OTPscreen" component={OtpVerification} />

@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './upCommingStyle';
 import UpCommingSchedulCard from '../upcommingSchedulCard/UpCommingSchedulCard';
 import {useSelector} from 'react-redux';
+import AppScrollView from '../appScrollView/AppScrollView';
 
 const Upcomming = () => {
   const scheduleData = useSelector(state => state.bookDoctor);
@@ -21,18 +22,18 @@ const Upcomming = () => {
     return <View>{scheduleData.map(handleSchedulelIstData)}</View>;
   };
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <AppScrollView contentContainerStyle={{flex: 1}}>
       <View style={styles.container}>
         {scheduleData.length == 0 ? (
           <View style={styles.noChatContainer}>
             <Text style={styles.noChat}>Welcome</Text>
-            <Text style={styles.noChat}>start new conversion</Text>
+            <Text style={styles.noChat}>start new Schedule</Text>
           </View>
         ) : (
           <HandleScheduleList />
         )}
       </View>
-    </ScrollView>
+    </AppScrollView>
   );
 };
 

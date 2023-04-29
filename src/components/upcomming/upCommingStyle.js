@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
+    flex: 1,
   },
   noChat: {
     fontFamily: APP_FONT_FAMILIY.interSemiBold,

@@ -36,6 +36,7 @@ const userSlice = createSlice({
   // },
 });
 
-export default userSlice.reducer;
+const bookDoctorSlice = userSlice.reducer;
+export default bookDoctorSlice;
 
 export const {bookDoctor, cancelDoctor} = userSlice.actions;

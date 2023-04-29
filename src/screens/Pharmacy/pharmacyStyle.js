@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     justifyContent: 'space-between',
     marginBottom: 15,
+    alignItems: 'center',
   },
   headingTitle: {
     fontSize: APP_FONT_SIZE.h4,

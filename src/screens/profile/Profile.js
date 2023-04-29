@@ -10,8 +10,10 @@ import {
 import React, {useState} from 'react';
 import {THEME_COLORS} from '../../constant/Theme';
 import styles from './profileStyle';
-import SCREEN_SIZE from '../../utils/utils';
 import DialogueBox from '../../components/dialogueBox/DialogueBox';
+import auth from '@react-native-firebase/auth';
+import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const customStyle = {
   alignItems: 'center',
@@ -19,9 +21,21 @@ const customStyle = {
 
 export default function Profile() {
   const [isDialogueBoxVisible, setisDialogueBoxVisible] = useState(false);
-  function handleLogout() {
+  const navigation = useNavigation();
+  function handleLogoutPopup() {
     setisDialogueBoxVisible(true);
   }
+  // Handling  Logout Functionality
+
+  const handleLogout = () => {
+    AsyncStorage.clear()
+      .then(() => {
+        navigation.replace('Login');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView
@@ -157,7 +171,9 @@ export default function Profile() {
               />
             </TouchableOpacity>
             <View style={styles.horizontalDevider}></View>
-            <TouchableOpacity style={styles.bottomInner} onPress={handleLogout}>
+            <TouchableOpacity
+              style={styles.bottomInner}
+              onPress={handleLogoutPopup}>
               <View style={styles.bottomInnerLeft}>
                 <View style={styles.bottomLeftIcon}>
                   <Image
@@ -187,11 +203,11 @@ export default function Profile() {
             title={'Are you sure to log out of your account?'}
             buttonText={'Log Out'}
             bottomButton={true}
+            onpress={handleLogout}
             bottomButtonText={'Cancel'}
             icon={require('../../assets/icons/logout.png')}
             onBottomButtonPress={() => {
               setisDialogueBoxVisible(false);
-              console.log('working');
             }}
           />
         </View>

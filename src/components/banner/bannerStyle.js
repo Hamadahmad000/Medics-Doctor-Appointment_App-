@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     width: '60%',
   },
   bannerButton: {
-    width: 100,
     marginTop: 20,
   },
   whiteBG: {

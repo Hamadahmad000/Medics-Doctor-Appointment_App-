@@ -11,6 +11,8 @@ const THEME_COLORS = {
   textNavy: '#3B4453',
   synergy: '#46C4B9',
   buttonGray: '#E8F3F1',
+  red: 'red',
+  chatleft: '#E8F3F1',
 };
 
 const APP_FONT_SIZE = {

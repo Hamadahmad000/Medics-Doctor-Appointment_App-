@@ -1,13 +1,19 @@
-import {View, Text, ScrollView, FlatList} from 'react-native';
+import {View, Text, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Chat from '../chat/Chat';
 import {useSelector} from 'react-redux';
 import styles from './allStyle';
 import SCREEN_SIZE from '../../utils/utils';
+import {useNavigation} from '@react-navigation/native';
 
 export default function All() {
   const chatData = useSelector(state => state.bookDoctor);
-
+  const navigation = useNavigation();
+  function handleOpenChat(item) {
+    navigation.navigate('Chat', {
+      DOCTORDETAILS: item,
+    });
+  }
   const handleChatList = (item, index) => {
     return (
       <Chat
@@ -18,6 +24,7 @@ export default function All() {
         profileimg={item.image}
         recentMessage={'Hello world'}
         key={index}
+        onpress={() => handleOpenChat(item)}
       />
     );
   };

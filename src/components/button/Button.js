@@ -2,6 +2,7 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from './buttonStyle';
 import {THEME_COLORS} from '../../constant/Theme';
+import AppText from '../AppText/AppText';
 
 export default function Button({
   buttonWidth,

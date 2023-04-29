@@ -13,9 +13,11 @@ import Button from '../../components/button/Button';
 import {THEME_COLORS} from '../../constant/Theme';
 import OrButton from '../../components/orButtons/OrButton';
 import DialogueBox from '../../components/dialogueBox/DialogueBox';
-import {useNavigation} from '@react-navigation/native';
+import {StackActions, useNavigation} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import Loader from '../loader/Loader';
+import AppView from '../../components/AppView/AppView';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Login() {
   //  Hooks
 
@@ -37,6 +39,7 @@ export default function Login() {
 
   const [isEmailOk, setisEmailOk] = useState(false);
   const [isPasswordOK, setisPasswordOK] = useState(false);
+  const [TryAgain, setTryAgain] = useState(false);
 
   const navigation = useNavigation();
 
@@ -104,6 +107,7 @@ export default function Login() {
       }
     } catch (error) {
       console.log(error);
+      setTryAgain(true);
     }
   };
 
@@ -126,13 +130,15 @@ export default function Login() {
     setisPasswordSecure(!isPasswordSecure);
   }
   function handleAccountMode() {
-    navigation.replace('Signup');
+    navigation.navigate('Signup');
   }
   function handleBack() {
     navigation.goBack();
   }
   function gotoHomeScreen() {
-    navigation.replace('Home');
+    AsyncStorage.setItem('LOGGEDIN', 'true').then(() => {
+      navigation.dispatch(StackActions.replace('Home'));
+    });
   }
   function handlePasswordForget() {
     navigation.navigate('ResetPassword');
@@ -158,76 +164,85 @@ export default function Login() {
         {userNotExist ? (
           <Text style={styles.accountError}>User is not registered</Text>
         ) : null}
-        <View style={styles.inputDivs}>
-          <Input
-            placeHolder={'Enter your email'}
-            marginVeriticle={8}
-            leftIcon={require('../../assets/icons/envelope.png')}
-            rightIcon={require('../../assets/icons/ok.png')}
-            error={isBadEmail}
-            ok={isEmailOk}
-            value={email}
-            onChange={text => {
-              setemail(text);
-              checkIsFieldsOK();
-            }}
-            useRightIcon={true}
-          />
-          {isBadEmail ? (
-            <View style={[styles.inputHandling, {marginTop: 0}]}>
-              <Text style={styles.error}>*The email you entered is wrong</Text>
-              <Text style={styles.forgetPassword}></Text>
+        {TryAgain == true && (
+          <Text style={styles.accountError}>
+            Network issue Please Login Again
+          </Text>
+        )}
+        <AppView useKeyboardView={true}>
+          <View style={styles.inputDivs}>
+            <Input
+              placeHolder={'Enter your email'}
+              marginVeriticle={8}
+              leftIcon={require('../../assets/icons/envelope.png')}
+              rightIcon={require('../../assets/icons/ok.png')}
+              error={isBadEmail}
+              ok={isEmailOk}
+              value={email}
+              onChange={text => {
+                setemail(text);
+                checkIsFieldsOK();
+              }}
+              useRightIcon={true}
+            />
+            {isBadEmail ? (
+              <View style={[styles.inputHandling, {marginTop: 0}]}>
+                <Text style={styles.error}>
+                  *The email you entered is wrong
+                </Text>
+                <Text style={styles.forgetPassword}></Text>
+              </View>
+            ) : null}
+            <Input
+              placeHolder={'Enter your password'}
+              marginVeriticle={8}
+              leftIcon={require('../../assets/icons/lock.png')}
+              leftIconSize={22}
+              rightIconSize={22}
+              rightIcon={
+                isPasswordSecure
+                  ? require('../../assets/icons/view.png')
+                  : require('../../assets/icons/hide.png')
+              }
+              value={password}
+              onChange={text => {
+                setpassword(text);
+                checkIsFieldsOK();
+              }}
+              error={isBadPassword}
+              ok={isPasswordOK}
+              password={true}
+              secureTextEntry={isPasswordSecure}
+              onRIghtIconPress={handlePasswordVisible}
+            />
+            <View style={styles.inputHandling}>
+              {isBadPassword ? (
+                <Text style={styles.error}>
+                  *The password you entered is wrong
+                </Text>
+              ) : (
+                <View></View>
+              )}
+              <TouchableOpacity onPress={handlePasswordForget}>
+                <Text style={styles.forgetPassword}>Forgot Password</Text>
+              </TouchableOpacity>
             </View>
-          ) : null}
-          <Input
-            placeHolder={'Enter your password'}
-            marginVeriticle={8}
-            leftIcon={require('../../assets/icons/lock.png')}
-            leftIconSize={22}
-            rightIconSize={22}
-            rightIcon={
-              isPasswordSecure
-                ? require('../../assets/icons/view.png')
-                : require('../../assets/icons/hide.png')
-            }
-            value={password}
-            onChange={text => {
-              setpassword(text);
-              checkIsFieldsOK();
-            }}
-            error={isBadPassword}
-            ok={isPasswordOK}
-            password={true}
-            secureTextEntry={isPasswordSecure}
-            onRIghtIconPress={handlePasswordVisible}
-          />
-          <View style={styles.inputHandling}>
-            {isBadPassword ? (
-              <Text style={styles.error}>
-                *The password you entered is wrong
+            <Button
+              bgColor={THEME_COLORS.green}
+              title={'Login'}
+              textColor={THEME_COLORS.white}
+              paddingVerticle={16}
+              marginVerticle={24}
+              onpress={handleLogin}
+            />
+            <View style={styles.registrationMode}>
+              <Text style={styles.leftSideText}>Don’t have an account?</Text>
+              <Text style={styles.signUpbutton} onPress={handleAccountMode}>
+                Sign Up
               </Text>
-            ) : (
-              <View></View>
-            )}
-            <TouchableOpacity onPress={handlePasswordForget}>
-              <Text style={styles.forgetPassword}>Forgot Password</Text>
-            </TouchableOpacity>
+            </View>
           </View>
-          <Button
-            bgColor={THEME_COLORS.green}
-            title={'Login'}
-            textColor={THEME_COLORS.white}
-            paddingVerticle={16}
-            marginVerticle={24}
-            onpress={handleLogin}
-          />
-          <View style={styles.registrationMode}>
-            <Text style={styles.leftSideText}>Don’t have an account?</Text>
-            <Text style={styles.signUpbutton} onPress={handleAccountMode}>
-              Sign Up
-            </Text>
-          </View>
-        </View>
+        </AppView>
         <View style={styles.optionDevider}>
           <View style={styles.deviderLine}></View>
           <Text style={styles.or}>OR</Text>

@@ -63,10 +63,9 @@ const styles = StyleSheet.create({
   },
   recentDoctolist: {
     justifyContent: 'space-between',
-    width: '100%',
     marginHorizontal: 24,
+    paddingBottom: 10,
   },
-  // recentDoctorsDiv: {flex: 1},
 });
 
 export default styles;

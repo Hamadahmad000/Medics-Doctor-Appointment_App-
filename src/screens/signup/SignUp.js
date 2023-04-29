@@ -30,6 +30,7 @@ export default function SignUp() {
   const [isBadPassword, setisBadPassword] = useState(false);
   const [isBadName, setisBadName] = useState(false);
   const [isEmailALreadyExist, setisEmailALreadyExist] = useState(false);
+  const [tryAgain, settryAgain] = useState(false);
 
   // EveryThing OK Hooks
 
@@ -82,26 +83,31 @@ export default function SignUp() {
   //    Catching Response Error
   const CatchError = async () => {
     try {
-      if (
-        isError.message ==
-        '[auth/weak-password] The given password is invalid. [ Password should be at least 6 characters ]'
-      ) {
-        setisBadPassword(true);
-      }
-      if (
-        isError.message ==
-        '[auth/email-already-in-use] The email address is already in use by another account.'
-      ) {
-        setisEmailALreadyExist(true);
-      }
-      if (
-        isError.message ==
-        '[auth/invalid-email] The email address is badly formatted.'
-      ) {
-        setisBadEmail(true);
+      if (isError.message !== null) {
+        if (
+          isError.message ==
+          '[auth/weak-password] The given password is invalid. [ Password should be at least 6 characters ]'
+        ) {
+          setisBadPassword(true);
+        }
+        if (
+          isError.message ==
+          '[auth/email-already-in-use] The email address is already in use by another account.'
+        ) {
+          setisEmailALreadyExist(true);
+        }
+        if (
+          isError.message ==
+          '[auth/invalid-email] The email address is badly formatted.'
+        ) {
+          setisBadEmail(true);
+        }
+      } else {
+        settryAgain(true);
       }
     } catch (error) {
       console.log(error);
+      settryAgain(true);
     }
   };
 
@@ -134,11 +140,7 @@ export default function SignUp() {
     navigation.replace('Login');
   }
   function handleBack() {
-    try {
-      navigation.goBack();
-    } catch (error) {
-      console.log(error);
-    }
+    navigation.goBack();
   }
   function gotoLogin() {
     navigation.navigate('Login');
@@ -158,7 +160,11 @@ export default function SignUp() {
         {isEmailALreadyExist ? (
           <Text style={styles.AccountError}>This email is already exist</Text>
         ) : null}
-
+        {tryAgain == true && (
+          <Text style={styles.AccountError}>
+            Network Problem please Try Again
+          </Text>
+        )}
         <View style={styles.inputDivs}>
           <Input
             placeHolder={'Enter your name'}

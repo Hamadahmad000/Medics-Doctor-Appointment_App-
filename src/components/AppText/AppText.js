@@ -16,6 +16,7 @@ const AppText = ({
   marginBottom,
   marginLeft,
   marginRight,
+  marginVertical,
   paddingHorizontal,
   paddingVertical,
   paddingTop,
@@ -26,12 +27,17 @@ const AppText = ({
   appFontSize,
   textColorOpacity,
   fontStyle,
+  alignSelf,
   style,
+  marginHorizontal,
 }) => {
   const extraStyle = {};
 
   if (textAlign) {
     extraStyle.textAlign = textAlign;
+  }
+  if (alignSelf) {
+    extraStyle.alignSelf = alignSelf;
   }
   if (fontWeight) {
     extraStyle.fontWeight = fontWeight;
@@ -47,6 +53,12 @@ const AppText = ({
   }
   if (marginRight) {
     extraStyle.marginRight = marginRight;
+  }
+  if (marginHorizontal) {
+    extraStyle.marginHorizontal = marginHorizontal;
+  }
+  if (marginVertical) {
+    extraStyle.marginVertical = marginVertical;
   }
   if (paddingHorizontal) {
     extraStyle.paddingHorizontal = paddingHorizontal;

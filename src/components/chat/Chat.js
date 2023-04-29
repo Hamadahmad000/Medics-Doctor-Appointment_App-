@@ -9,9 +9,10 @@ const Chat = ({
   recentMessage,
   lastChatTime,
   deliverStatus,
+  onpress,
 }) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onpress}>
       <View style={{flexDirection: 'row'}}>
         <Image
           source={profileimg}

@@ -1,9 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit';
-import bookDoctorReducer from './slices/OrderedSlice';
-
+import bookDoctorSlice from './slices/OrderedSlice';
+import PharmacyMedicineSlice from './slices/PharmacySlice';
 const store = configureStore({
   reducer: {
-    bookDoctor: bookDoctorReducer,
+    bookDoctor: bookDoctorSlice,
+    pharmacy: PharmacyMedicineSlice,
   },
 });
 

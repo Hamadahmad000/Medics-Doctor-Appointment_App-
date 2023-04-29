@@ -34,6 +34,11 @@ const styles = StyleSheet.create({
     color: THEME_COLORS.black,
     marginLeft: 30,
   },
+  cartItemCount: {
+    position: 'absolute',
+    top: -10,
+    right: 15,
+  },
 });
 
 export default styles;
